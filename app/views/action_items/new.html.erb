@@ -1,0 +1,14 @@
+<h1 class="text-center">Create A New Todo</h1>
+<%= form_for [@user, @actionitem] do |f| %>
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_field :content, autofocus: true, class: "form-control" %>
+        <%= f.label :due_at %>
+        <%= f.date_field :due_at, class: "form-control" %>
+      </div>
+      <%= f.submit "Create Todo", class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

@@ -1,1 +1,49 @@
 <h1 class="text-center">Todo List</h1>
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <h3 class="text-center">Incomplete Todos</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr style="background-color: rgb(55, 55, 55); color: whitesmoke;">
+          <th>Todo</th>
+          <th>Date Due</th>
+          <th>Complete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_user.incompleted.each do |ai| %>
+          <tr>
+            <td><%= ai.content %></td>
+            <td><%= parse_date(ai.due_at) %></td>
+            <td><%= button_to "Complete", "#", class: "btn btn-default" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <h3 class="text-center">Complete Todos</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr style="background-color: rgb(55, 55, 55); color: whitesmoke;">
+          <th>Todo</th>
+          <th>Date Due</th>
+          <th>Completed At</th>
+          <th>Undo Complete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_user.completed.each do |ai| %>
+          <tr>
+            <td><%= ai.content %></td>
+            <td><%= ai.date_due %></td>
+            <td><%= ai.completed_at %></td>
+            <td><%= button_to "Undo", "#", class: "btn btn-default" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

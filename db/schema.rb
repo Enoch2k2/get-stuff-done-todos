@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516155711) do
+ActiveRecord::Schema.define(version: 20180517151553) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "action_items", force: :cascade do |t|
     t.string "content"
-    t.boolean "completed", default: false
-    t.date "completed_at"
-    t.date "due_at"
+    t.datetime "completed_at"
+    t.datetime "due_at"
     t.string "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "due_time"
     t.index ["user_id"], name: "index_action_items_on_user_id"
   end
 

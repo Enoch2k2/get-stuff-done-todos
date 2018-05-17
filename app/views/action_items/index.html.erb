@@ -7,7 +7,10 @@
         <tr style="background-color: rgb(55, 55, 55); color: whitesmoke;">
           <th>Todo</th>
           <th>Date Due</th>
+          <th>Time Due</th>
           <th>Complete</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -15,7 +18,10 @@
           <tr>
             <td><%= ai.content %></td>
             <td><%= parse_date(ai.due_at) %></td>
-            <td><%= button_to "Complete", "#", class: "btn btn-default" %></td>
+            <td><%= parse_time(ai.due_at) %></td>
+            <td class="text-center"><%= link_to "Complete", user_action_item_complete_path(current_user, ai), class: "btn btn-default", method: 'post' %></td>
+            <td class="text-center"><%= link_to "Edit", edit_user_action_item_path(current_user, ai), class: "btn btn-default" %></td>
+            <td class="text-center"><%= link_to "Delete", user_action_item_path(current_user, ai), class: "btn btn-default", method: 'delete' %></td>
           </tr>
         <% end %>
       </tbody>
@@ -30,17 +36,25 @@
         <tr style="background-color: rgb(55, 55, 55); color: whitesmoke;">
           <th>Todo</th>
           <th>Date Due</th>
-          <th>Completed At</th>
+          <th>Time Due</th>
+          <th>Completed Date</th>
+          <th>Completed Time</th>
           <th>Undo Complete</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
         <% current_user.completed.each do |ai| %>
           <tr>
             <td><%= ai.content %></td>
-            <td><%= ai.date_due %></td>
-            <td><%= ai.completed_at %></td>
-            <td><%= button_to "Undo", "#", class: "btn btn-default" %></td>
+            <td><%= parse_date(ai.due_at) %></td>
+            <td><%= parse_time(ai.due_at) %></td>
+            <td><%= parse_date(ai.completed_at) %></td>
+            <td><%= parse_time(ai.completed_at) %></td>
+            <td class="text-center"><%= link_to "Undo", user_action_item_incomplete_path(current_user, ai), class: "btn btn-default", method: 'post' %></td>
+            <td class="text-center"><%= link_to "Edit", edit_user_action_item_path(current_user, ai), class: "btn btn-default" %></td>
+            <td class="text-center"><%= link_to "Delete", user_action_item_path(current_user, ai), class: "btn btn-default", method: 'delete' %></td>
           </tr>
         <% end %>
       </tbody>

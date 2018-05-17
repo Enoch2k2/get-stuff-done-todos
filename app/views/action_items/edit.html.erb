@@ -1,5 +1,5 @@
-<h1 class="text-center">Create A New Todo</h1>
-<%= form_for [@user, @actionitem] do |f| %>
+<h1 class="text-center">Edit <%= @action_item.content %></h1>
+<%= form_for [@user, @action_item] do |f| %>
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <div class="form-group">
@@ -7,8 +7,10 @@
         <%= f.text_field :content, autofocus: true, class: "form-control" %>
         <%= f.label :due_at %>
         <%= f.datetime_field :due_at, class: "form-control" %>
+        <%= f.label :completed_at %>
+        <%= f.datetime_field :completed_at, class: "form-control" %>
       </div>
-      <%= f.submit "Create Todo", class: "btn btn-default" %>
+      <%= f.submit "Update Todo", class: "btn btn-default" %>
     </div>
   </div>
 <% end %>
